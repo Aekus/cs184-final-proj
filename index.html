@@ -1,0 +1,75 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<h1> Title, Summary and Team Members </h1>
+
+    <p> Title: Efficient ray-tracing of moving light sources </p>
+    <p> Summary:
+Retracing uniformly sampled light rays when a light source moves in a scene introduces a lot of redundant calculation since the ray trajectories don’t change. We aim to provide an algorithm for precomputing rays and calculating light source intersections to avoid this redundant calculation, allowing us to render scenes with moving light sources much faster. </p>
+    <p>
+    Team Members:
+    Sofia Sun (3034205932, email: sofia.sun@berkeley.edu, github: sofia-sun),
+    Shawn Huang (3034611295, email: shawn.huang@berkeley.edu, github: huangshawn1),
+    Aekus Bhathal (3034944108, email: abhathal@berkeley.edu, github:aekus),
+    Bernard Chan (3034788043, email: bernardmc8@berkeley.edu, github:bernardmc8) </p>
+
+		<h1> Problem Description </h1>
+    <p>Often, when rendering graphics, we have to account for the possibility that lights will move. Depending on the type of scene, this can happen very often, like in the case that someone is walking around with a flashlight or driving a car with headlights. When light sources move, ray trajectories from our camera don't change as long as we are sampling from the region where the light source must belong. Based on our existing ray-tracing algorithm that we implemented in Proj3-1, however, we would have to recompute all the rays everytime we changed a light source position. As such, we saw this final project as an opportunity to make our rendering of these types of scenes where a light is moving around to be more efficient. We will solve it by precomputing rays and intersections which return a pointer to emission at a certain point as opposed to the static emission. Then, when the light sources move, instead of recomputing rays, we check if the existing rays intersected the new location of the light source and if true, we return the emission from that new light source. Some challenges we anticipate are dealing with storage (we have to store the bounces of every ray as well as an ‘emission matrix’ of emission values at grid values in the scene which we update after moving the light source), improving the speed of the renderings, and overcoming the problems with using hemisphere sampling as opposed to importance sampling. </p>
+
+    <h1> Goals and Deliverables </h1>
+
+    <p>Our goal is to be able to render 3D images with moving light sources in real time. </p>
+
+    <p>
+    We will produce an interactive demo where users may move the light source and observe the corresponding rendering results. </p>
+
+    <p>
+    The baseline is to be able to render scenes faster with our algorithm than recomputing rays with minimal loss in quality. In this baseline version of the project, the light source movement will be limited to any point on an object.
+    We can measure the performance of our system by seeing how complex the scenes we render can be while still allowing for real time light source changes and observing how much lag there is when changing the location of the light source. We can also compare how long it takes to render different scenes using our algorithm compared to the approach from Project 3. We hope to see a significant speedup when we don’t re-trace every ray. </p>
+
+    <p>
+    From Project 3, we learned all necessary tools to implement such rendering. Along with the stored path information, we expect the above idea can be accomplished. </p>
+
+    <p>
+    If we get ahead of our schedule and everything goes well, we would like to expand our project to be able to deal with more complex objects relations. We could also work on allowing a wider range of light movements (such as putting light in the air). </p>
+
+    <h1> Schedule </h1>
+    <p> Week 1 </p>
+    <ul>
+      <li> Research academic papers and online resources </li>
+      <li> Fully hash out a plan for how we are precomputing the rays and what information needs to be stored to allow real time rendering with moving light sources </li>
+      <li> Revise Project 3 code and prepare to build upon it </li>
+    </ul>
+    <p> Week 2 </p>
+    <ul>
+      <li> Write code to precompute and store necessary information </li>
+      <li> Write code to use stored information to allow for moving light </li>
+      <li> Test out the computation speed and improve computation efficiency as much as possible to prepare for real time rendering </li>
+    </ul>
+    <p> Week 3 </p>
+    <ul>
+      <li> Debugging and improving the codes </li>
+      <li> Prepare to resolve any unexpected problems </li>
+      <li> Frontend to allow the user to move light sources </li>
+    </ul>
+    <p> Week 4 </p>
+    <ul>
+      <li> Polish and test on a variety of scenes </li>
+      <li> Complete the final report </li>
+    </ul>
+
+    <h1> Resources </h1>
+    <p> We will be starting from the Project 3-1 codebase and plan on using the same hardware for this project as project 3-1, which are our personal computers and instructional machines </p>
+
+    <p> Relevant Papers: </p>
+
+    <p>
+      Spatiotemporal reservoir resampling for real-time ray tracing with dynamic direct lighting: https://research.nvidia.com/publication/2020-07_Spatiotemporal-reservoir-resampling </p>
+
+    <p>
+  Shadow maps for moving light sources:
+  https://mtnphil.wordpress.com/2011/10/31/shadow-maps-for-moving-light-sources/ </p>
+
+	</body>
+</html>
